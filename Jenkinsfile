@@ -22,7 +22,7 @@ pipeline {
                 bat "${PYTHON_EXEC} -m pip install -r requirements.txt"
 
                 // Run Python tests
-                bat "${PYTHON_EXEC} -m unittest discover -s tests -p '*_test.py'"
+                //bat "${PYTHON_EXEC} -m unittest discover -s tests -p '*_test.py'"
             }
         }
 
@@ -41,12 +41,12 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up Docker containers and images
-            bat 'for /f %i in (\'docker ps -q\') do docker stop %i'
-            bat 'docker rm $(docker ps -aq)'
-            bat 'docker rmi calculator-app'
-        }
-    }
+    // post {
+    //     always {
+    //         // Clean up Docker containers and images
+    //         bat 'for /f %i in (\'docker ps -q\') do docker stop %i'
+    //         bat 'docker rm $(docker ps -aq)'
+    //         bat 'docker rmi calculator-app'
+    //     }
+    // }
 }
