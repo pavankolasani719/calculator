@@ -2,49 +2,44 @@ pipeline {
     agent any
 
     environment {
-        // Define the Python executable path
-        PYTHON_EXEC = 'C:\\Python39\\python.exe'
+        DOCKER_IMAGE = 'calculator:latest'
+        PYTHON_EXEC = 'python'
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout SCM') {
             steps {
-                // Checkout the source code from your GitHub repository
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/pavankolasani719/calculator.git']]])
+                checkout scm
             }
         }
 
         stage('Build and Test') {
             steps {
-                // Install project dependencies
-                bat "${PYTHON_EXEC} -m pip install -r requirements.txt"
-
-                // Run Python tests
-                bat "${PYTHON_EXEC} -m unittest discover -s tests -p '*_test.py'"
+                bat label: 'Install Python Dependencies', script: "${PYTHON_EXEC} -m pip install -r requirements.txt"
+                bat label: 'Run Tests', script: "${PYTHON_EXEC} manage.py test"
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                // Build the Docker image
-                bat 'docker build -t calculator-app .'
+                bat label: 'Build Docker Image', script: "docker build -t ${DOCKER_IMAGE} ."
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                // Run the Docker container and expose it on port 8089
-                bat 'docker run -d -p 8089:8088 calculator-app'
+                script {
+                    def dockerRunCmd = "docker run -p 8089:80 -d ${DOCKER_IMAGE}"
+                    bat label: 'Run Docker Container', script: dockerRunCmd
+                    echo "Docker container is running."
+                }
             }
         }
     }
 
     post {
         always {
-            // Clean up Docker containers and images
-            bat 'docker stop $(docker ps -q)'
-            bat 'docker rm $(docker ps -aq)'
-            bat 'docker rmi calculator-app'
+            bat label: 'Stop All Docker Containers', script: 'docker stop $(docker ps -q)'
         }
     }
 }
