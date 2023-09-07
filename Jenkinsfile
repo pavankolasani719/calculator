@@ -35,8 +35,8 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                // Run the Docker container and expose it on port 8089
-                bat 'docker run -d -p 8089:8088 calculator-app'
+                // Run the Docker container and expose it on port 8090
+                bat 'docker run -d -p 8090:8088 calculator-app'
             }
         }
     }
