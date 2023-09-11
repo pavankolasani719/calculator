@@ -24,15 +24,22 @@
         /* Additional styling for the Clear button */
         #clear {
             width: 150px;
-            #0 {
-            width: 150px;
-            
         }
 
         /* Separate styles for operators at the top */
         .operator {
             background-color: lightgray;
             font-weight: bold;
+        }
+
+        /* Adjust the size of 0 button */
+        #zero {
+            width: 150px;
+        }
+
+        /* Adjust the size of input buttons */
+        input[type="button"] {
+            width: 450px;
         }
     </style>
 </head>
@@ -69,7 +76,7 @@
         <br>
 
         <!-- Buttons for 0, ., and = -->
-        <input type="button" value="0" onclick="addToExpression('0')">
+        <input type="button" value="0" id="zero" onclick="addToExpression('0')">
         <input type="button" value="." onclick="addToExpression('.')">
         <input type="button" value="=" class="operator" onclick="calculate()">
         <br>
