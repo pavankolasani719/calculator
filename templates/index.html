@@ -10,11 +10,16 @@
             font-size: 20px;
             margin: 5px;
         }
+
+        #result {
+            font-size: 24px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>Calculator</h1>
-    <form action="/calculate" method="POST">
+    <form action="#" onsubmit="calculate(); return false;">
         <!-- Input field to enter the expression -->
         <input type="text" id="expression" name="expression" placeholder="Enter an expression" required>
         <br>
@@ -37,14 +42,33 @@
         <input type="button" value="/" onclick="addToExpression('/')">
         <br>
 
-        <!-- Calculate button -->
+        <!-- Calculate and Clear buttons -->
         <input type="submit" value="Calculate">
+        <input type="button" value="Clear" onclick="clearInput();">
     </form>
 
-    <!-- JavaScript function to update the expression -->
+    <!-- Result display -->
+    <div id="result"></div>
+
+    <!-- JavaScript functions to update the expression and calculate result -->
     <script>
         function addToExpression(value) {
             document.getElementById("expression").value += value;
+        }
+
+        function calculate() {
+            var expression = document.getElementById("expression").value;
+            try {
+                var result = eval(expression);
+                document.getElementById("result").innerHTML = "Result: " + result;
+            } catch (error) {
+                document.getElementById("result").innerHTML = "Error: Invalid Expression";
+            }
+        }
+
+        function clearInput() {
+            document.getElementById("expression").value = "";
+            document.getElementById("result").innerHTML = "";
         }
     </script>
 </body>
