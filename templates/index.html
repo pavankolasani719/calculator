@@ -40,6 +40,12 @@
         <input type="text" id="expression" name="expression" placeholder="0" required>
         <br>
 
+        <!-- Clear and additional operator buttons -->
+        <input type="button" value="CLEAR" id="clear" onclick="clearInput();">
+        <input type="button" value="+/-" class="operator" onclick="addToExpression('-')">
+        <input type="button" value="%" class="operator" onclick="addToExpression('%')">
+        <input type="button" value="+" class="operator" onclick="addToExpression('+')">
+        <br>
         <!-- Buttons for numbers 0-9 -->
         <input type="button" value="7" onclick="addToExpression('7')">
         <input type="button" value="8" onclick="addToExpression('8')">
@@ -65,12 +71,7 @@
         <input type="button" value="=" class="operator" onclick="calculate()">
         <br>
 
-        <!-- Clear and additional operator buttons -->
-        <input type="button" value="CLEAR" id="clear" onclick="clearInput();">
-        <input type="button" value="+/-" class="operator" onclick="addToExpression('-')">
-        <input type="button" value="%" class="operator" onclick="addToExpression('%')">
-        <input type="button" value="+" class="operator" onclick="addToExpression('+')">
-        <br>
+        
 
     </form>
 
