@@ -2,12 +2,50 @@
 <html>
 <head>
     <title>Calculator</title>
+    <style>
+        /* Add some basic CSS styling for buttons and input */
+        input[type="text"], input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculator</h1>
     <form action="/calculate" method="POST">
-        <input type="text" name="expression" placeholder="Enter an expression" required>
+        <!-- Input field to enter the expression -->
+        <input type="text" id="expression" name="expression" placeholder="Enter an expression" required>
+        <br>
+
+        <!-- Buttons for numbers 0-9 and basic operations -->
+        <input type="button" value="0" onclick="addToExpression('0')">
+        <input type="button" value="1" onclick="addToExpression('1')">
+        <input type="button" value="2" onclick="addToExpression('2')">
+        <input type="button" value="3" onclick="addToExpression('3')">
+        <input type="button" value="4" onclick="addToExpression('4')">
+        <input type="button" value="5" onclick="addToExpression('5')">
+        <input type="button" value="6" onclick="addToExpression('6')">
+        <input type="button" value="7" onclick="addToExpression('7')">
+        <input type="button" value="8" onclick="addToExpression('8')">
+        <input type="button" value="9" onclick="addToExpression('9')">
+        <br>
+        <input type="button" value="+" onclick="addToExpression('+')">
+        <input type="button" value="-" onclick="addToExpression('-')">
+        <input type="button" value="*" onclick="addToExpression('*')">
+        <input type="button" value="/" onclick="addToExpression('/')">
+        <br>
+
+        <!-- Calculate button -->
         <input type="submit" value="Calculate">
     </form>
+
+    <!-- JavaScript function to update the expression -->
+    <script>
+        function addToExpression(value) {
+            document.getElementById("expression").value += value;
+        }
+    </script>
 </body>
 </html>
