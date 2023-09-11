@@ -5,15 +5,31 @@
     <style>
         /* Add some basic CSS styling for buttons and input */
         input[type="text"], input[type="button"] {
-            width: 100px;
-            height: 100px;
-            font-size: 40px;
-            margin: 10px;
+            width: 70px;
+            height: 70px;
+            font-size: 30px;
+            margin: 7px;
         }
 
         #result {
             font-size: 24px;
             margin-top: 10px;
+        }
+
+        /* Center align text in input field */
+        #expression {
+            text-align: center;
+        }
+
+        /* Additional styling for the Clear button */
+        #clear {
+            width: 150px;
+        }
+
+        /* Separate styles for operators at the top */
+        .operator {
+            background-color: lightgray;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -21,32 +37,41 @@
     <h1>Calculator</h1>
     <form action="#" onsubmit="calculate(); return false;">
         <!-- Input field to enter the expression -->
-        <input type="text" id="expression" name="expression" placeholder="Enter an expression" required>
+        <input type="text" id="expression" name="expression" placeholder="0" required>
         <br>
 
-        <!-- Buttons for numbers 0-9 and basic operations -->
-        <input type="button" value="0" onclick="addToExpression('0')">
-        <input type="button" value="1" onclick="addToExpression('1')">
-        <input type="button" value="2" onclick="addToExpression('2')">
-         <br>
-        <input type="button" value="3" onclick="addToExpression('3')">
-        <input type="button" value="4" onclick="addToExpression('4')">
-        <input type="button" value="5" onclick="addToExpression('5')">
-         <br>
-        <input type="button" value="6" onclick="addToExpression('6')">
+        <!-- Buttons for numbers 0-9 -->
         <input type="button" value="7" onclick="addToExpression('7')">
         <input type="button" value="8" onclick="addToExpression('8')">
         <input type="button" value="9" onclick="addToExpression('9')">
-        <br>
-                                            <input type="button" value="+" onclick="addToExpression('+')">
-                                            <input type="button" value="-" onclick="addToExpression('-')">
-                                            <input type="button" value="*" onclick="addToExpression('*')">
-                                            <input type="button" value="/" onclick="addToExpression('/')">
+        <input type="button" value="/" class="operator" onclick="addToExpression('/')">
         <br>
 
-        <!-- Calculate and Clear buttons -->
-        <input type="submit" value="Calculate">
-        <input type="button" value="Clear" onclick="clearInput();">
+        <input type="button" value="4" onclick="addToExpression('4')">
+        <input type="button" value="5" onclick="addToExpression('5')">
+        <input type="button" value="6" onclick="addToExpression('6')">
+        <input type="button" value="*" class="operator" onclick="addToExpression('*')">
+        <br>
+
+        <input type="button" value="1" onclick="addToExpression('1')">
+        <input type="button" value="2" onclick="addToExpression('2')">
+        <input type="button" value="3" onclick="addToExpression('3')">
+        <input type="button" value="-" class="operator" onclick="addToExpression('-')">
+        <br>
+
+        <!-- Buttons for 0, ., and = -->
+        <input type="button" value="0" onclick="addToExpression('0')">
+        <input type="button" value="." onclick="addToExpression('.')">
+        <input type="button" value="=" class="operator" onclick="calculate()">
+        <br>
+
+        <!-- Clear and additional operator buttons -->
+        <input type="button" value="CLEAR" id="clear" onclick="clearInput();">
+        <input type="button" value="+/-" class="operator" onclick="addToExpression('-')">
+        <input type="button" value="%" class="operator" onclick="addToExpression('%')">
+        <input type="button" value="+" class="operator" onclick="addToExpression('+')">
+        <br>
+
     </form>
 
     <!-- Result display -->
