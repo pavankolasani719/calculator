@@ -1,2 +1,2 @@
 # calculator
-from CHAT GPT in python 
+in python 
